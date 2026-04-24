@@ -1,3 +1,7 @@
+package quantumcar;
+
+import quantumengine.*;
+
 public class Car {
     private final int SPEED_STEP = 20;
     private Engine engine;
@@ -31,7 +35,7 @@ public class Car {
             boolean engineIsRunning = this.engine.isRunning();
             if (!engineIsRunning) {
                 this.engine = engine;
-                System.out.println("Car engine has been switched to " + engineType + ".");
+                System.out.println("Car engine has been replaced to " + this.engine.getType() + ".");
             } else
                 System.out.println("Stop the car before replacing the engine.");
         }

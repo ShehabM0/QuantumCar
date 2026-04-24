@@ -1,8 +1,10 @@
+package quantumengine;
+
 // TODO
 public class HybridEngine implements Engine {
-    private final int MAX_SPEED = 200;
     private final ElectronicEngine electricEngine;
     private final GasolineEngine gasEngine;
+    private final int MAX_SPEED = 200;
     private Engine activeEngine;
     private boolean isRunning;
 

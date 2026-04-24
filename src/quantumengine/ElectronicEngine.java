@@ -1,3 +1,5 @@
+package quantumengine;
+
 public class ElectronicEngine implements Engine {
     private final int MAX_SPEED = 200;
     private boolean isRunning;

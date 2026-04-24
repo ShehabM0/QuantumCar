@@ -1,3 +1,5 @@
+package quantumengine;
+
 public class GasolineEngine implements Engine {
     private final int MAX_SPEED = 200;
     private boolean isRunning;

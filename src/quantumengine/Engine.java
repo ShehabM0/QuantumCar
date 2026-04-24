@@ -1,3 +1,5 @@
+package quantumengine;
+
 public interface Engine {
     String getType();
     boolean isRunning();
