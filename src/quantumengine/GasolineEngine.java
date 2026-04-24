@@ -2,7 +2,6 @@ package quantumengine;
 
 public class GasolineEngine implements Engine {
     private final int MAX_SPEED = 200;
-    private final int SPEED_STEP = 1;
     private boolean isRunning;
     private int speed;
 
@@ -37,39 +36,26 @@ public class GasolineEngine implements Engine {
     }
 
     @Override
-    public void changeSpeed(int value) {
-        if (!isRunning) {
-            System.out.println("Start the car first.");
-            return;
-        }
-        speed = Math.max(0, Math.min(MAX_SPEED, speed + value));
-        int newSpeed = Math.max(0, Math.min(MAX_SPEED, speed + value));
-        if(newSpeed == speed) {
-            if(speed == MAX_SPEED)
-                System.out.println("Gasoline engine is already at maximum speed (200 km/h).");
-            else // speed == 0
-                System.out.println("Gasoline engine is already at 0 km/h.");
-        }
-        else {
-            speed = newSpeed;
-            String operation = (value > 0) ? "accelerated" : "slowed";
-            System.out.println("Gasoline engine " + operation + " to " + speed + " km/h.");
-        }
-    }
-
-    @Override
     public void increase() {
-        changeSpeed(SPEED_STEP);
+        speed++;
     }
 
     @Override
     public void decrease() {
-        changeSpeed(-SPEED_STEP);
+        speed--;
     }
 
     @Override
-    public int getSpeed() {
-        return speed;
+    public void onChangeSpeed(int carSpeed) {
+        if(speed == carSpeed)
+            return;
+        if(speed < carSpeed) {
+            while (speed < carSpeed) increase();
+            System.out.println("Gasoline engine internal speed accelerated to " + speed + " km/h.");
+        } else {
+            while (speed > carSpeed) decrease();
+            System.out.println("Gasoline engine internal speed slowed down to " + speed + " km/h.");
+        }
     }
 
     @Override

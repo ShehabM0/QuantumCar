@@ -1,11 +1,10 @@
 package quantumengine;
 
 public interface Engine {
-    String getType();
     boolean isRunning();
-    int getSpeed();
+    String getType();
 
-    void changeSpeed(int value);
+    void onChangeSpeed(int value);
     void increase();
     void decrease();
 
