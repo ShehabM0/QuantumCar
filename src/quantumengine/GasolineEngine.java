@@ -1,7 +1,6 @@
 package quantumengine;
 
 public class GasolineEngine implements Engine {
-    private final int MAX_SPEED = 200;
     private boolean isRunning;
     private int speed;
 
@@ -11,28 +10,30 @@ public class GasolineEngine implements Engine {
     }
 
     @Override
-    public void start() {
+    public boolean start() {
         if (isRunning) {
             System.out.println("Gasoline engine is already running.");
-            return;
+            return false;
         }
         isRunning = true;
         speed = 0;
         System.out.println("Gasoline engine started.");
+        return true;
     }
 
     @Override
-    public void stop() {
+    public boolean stop() {
         if (!isRunning) {
             System.out.println("Gasoline engine is already stopped.");
-            return;
+            return false;
         }
         if(speed > 0) {
             System.out.println("Gasoline engine can't be stopped at speed " + speed + " km/h.");
-            return;
+            return false;
         }
         isRunning = false;
         System.out.println("Gasoline engine stopped.");
+        return true;
     }
 
     @Override

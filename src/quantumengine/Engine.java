@@ -8,6 +8,6 @@ public interface Engine {
     void increase();
     void decrease();
 
-    void start();
-    void stop();
+    boolean start();
+    boolean stop();
 }

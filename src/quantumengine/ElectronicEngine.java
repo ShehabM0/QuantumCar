@@ -10,28 +10,30 @@ public class ElectronicEngine implements Engine {
     }
 
     @Override
-    public void start() {
+    public boolean start() {
         if (isRunning) {
             System.out.println("Electronic engine is already running.");
-            return;
+            return false;
         }
         isRunning = true;
         speed = 0;
         System.out.println("Electronic engine started.");
+        return true;
     }
 
     @Override
-    public void stop() {
+    public boolean stop() {
         if (!isRunning) {
             System.out.println("Electronic engine is already stopped.");
-            return;
+            return false;
         }
         if(speed > 0) {
             System.out.println("Electronic engine can't be stopped at speed " + speed + " km/h.");
-            return;
+            return false;
         }
         isRunning = false;
         System.out.println("Electronic engine stopped.");
+        return true;
     }
 
     @Override
