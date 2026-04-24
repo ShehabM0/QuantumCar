@@ -2,6 +2,7 @@ package quantumengine;
 
 public class ElectronicEngine implements Engine {
     private final int MAX_SPEED = 200;
+    private final int SPEED_STEP = 1;
     private boolean isRunning;
     private int speed;
 
@@ -10,6 +11,7 @@ public class ElectronicEngine implements Engine {
         return "Electronic Engine";
     }
 
+    @Override
     public void start() {
         if (isRunning) {
             System.out.println("Electronic engine is already running.");
@@ -27,7 +29,7 @@ public class ElectronicEngine implements Engine {
             return;
         }
         if(speed > 0) {
-            System.out.println("Electronic engine can't be stopped at speed " + speed + "km/h.");
+            System.out.println("Electronic engine can't be stopped at speed " + speed + " km/h.");
             return;
         }
         isRunning = false;
@@ -40,15 +42,29 @@ public class ElectronicEngine implements Engine {
             System.out.println("Start the car first.");
             return;
         }
-        speed = Math.max(0, Math.min(MAX_SPEED, speed + value));
-        if(speed == 200)
-            System.out.println("Electronic engine is already at maximum speed (200 km/h).");
-        else if(speed == 0)
-            System.out.println("Electronic engine is already at 0 km/h.");
-        else {
-            String operation = (value > 0) ? "accelerated" : "slowed";
-            System.out.println("Electric engine " + operation + " to " + speed + " km/h.");
+
+        int newSpeed = Math.max(0, Math.min(MAX_SPEED, speed + value));
+        if(newSpeed == speed) {
+            if(speed == MAX_SPEED)
+                System.out.println("Electronic engine is already at maximum speed (200 km/h).");
+            else // speed == 0
+                System.out.println("Electronic engine is already at 0 km/h.");
         }
+        else {
+            speed = newSpeed;
+            String operation = (value > 0) ? "accelerated" : "slowed";
+            System.out.println("Electronic engine " + operation + " to " + speed + " km/h.");
+        }
+    }
+
+    @Override
+    public void increase() {
+        changeSpeed(SPEED_STEP);
+    }
+
+    @Override
+    public void decrease() {
+        changeSpeed(-SPEED_STEP);
     }
 
     @Override

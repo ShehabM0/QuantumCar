@@ -26,6 +26,14 @@ public class Car {
         engine.changeSpeed(-SPEED_STEP);
     }
 
+    public void increaseSpeed() {
+        engine.increase();
+    }
+
+    public void decreaseSpeed() {
+        engine.decrease();
+    }
+
     public void replaceEngine(Engine engine) {
         String engineType = this.engine.getType();
         String targetEngineType = engine.getType();
@@ -35,13 +43,13 @@ public class Car {
             boolean engineIsRunning = this.engine.isRunning();
             if (!engineIsRunning) {
                 this.engine = engine;
-                System.out.println("Car engine has been replaced to " + this.engine.getType() + ".");
+                System.out.println("Car engine has been replaced to " + targetEngineType + ".");
             } else
                 System.out.println("Stop the car before replacing the engine.");
         }
     }
 
-    public void getEngineType() {
-        System.out.println(engine.getType());
+    public String getEngineType() {
+        return engine.getType();
     }
 }

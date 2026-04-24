@@ -5,6 +5,7 @@ public class HybridEngine implements Engine {
     private final ElectronicEngine electricEngine;
     private final GasolineEngine gasEngine;
     private final int MAX_SPEED = 200;
+    private final int SPEED_STEP = 1;
     private Engine activeEngine;
     private boolean isRunning;
 
@@ -31,6 +32,16 @@ public class HybridEngine implements Engine {
     @Override
     public void changeSpeed(int value) {
         return;
+    }
+
+    @Override
+    public void increase() {
+        changeSpeed(SPEED_STEP);
+    }
+
+    @Override
+    public void decrease() {
+        changeSpeed(-SPEED_STEP);
     }
 
     @Override
